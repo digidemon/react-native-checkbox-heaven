@@ -8,22 +8,15 @@ const defaultIcon = iconDb[8]
 
 class CheckBox extends Component {
 
-    componentWillMount() {
-        this.state = { checked: this.props.checked }
-    }
-
     _onChange() {
-        const newVal = !this.state.checked
+        const newVal = !this.props.checked
         const { onChange } = this.props
-        this.setState({ checked:newVal }, () => {
-            onChange(newVal)
-        })
+        onChange(newVal)
     }
 
     _renderIcon(iconName) {
 
-        const { iconSize, iconStyle, checkedColor, uncheckedColor } = this.props
-        const checked = this.state.checked
+        const { iconSize, iconStyle, checkedColor, uncheckedColor, checked } = this.props
         const index = iconDb.findIndex(i => i.iconName === iconName)
 
         if (index !== -1) {
